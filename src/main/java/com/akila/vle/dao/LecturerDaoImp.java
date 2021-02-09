@@ -30,7 +30,7 @@ public class LecturerDaoImp implements LecturerDao{
 
         try{
             String sql_studyMaterial="INSERT INTO studymaterial(lec, topic, des, subjectID) values(?,?,?,?)";
-            String sql_file="INSERT INTO lecturefiles(name, file, mID) values(?,?,(SELECT mID FROM studymaterial WHERE lec='"+lectureBean.getLec().trim().substring(0,1).toUpperCase(Locale.ROOT)+lectureBean.getLec().trim().substring(1).toLowerCase(Locale.ROOT)+"'))";
+            String sql_file="INSERT INTO lecturefiles(name, file, mID) values(?,?,(SELECT mID FROM studymaterial WHERE lec='"+lectureBean.getLec().trim().substring(0,1).toUpperCase(Locale.ROOT)+lectureBean.getLec().trim().substring(1).toLowerCase(Locale.ROOT)+"' GROUP BY lec))";
             int[][] updateCounts = new int[0][];
 
             //File encoding and setting file name
@@ -104,6 +104,15 @@ public class LecturerDaoImp implements LecturerDao{
                 return e;
             }
         });
+
+    }
+
+    @Override
+    public int deleteLecture(int mID) {
+
+        String sql = "DELETE FROM studymaterial WHERE mID=?";
+
+        return template.update(sql,mID);
 
     }
 

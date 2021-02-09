@@ -190,7 +190,7 @@
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
                                             <label>Lecture Name:</label>
-                                            <form:input type="text" path="lec" id="lecture" class="form-control" required="true" placeholder="lecture"/>
+                                            <form:input type="text" path="lec" readonly="true" id="lecture" class="form-control" required="true" placeholder="lecture"/>
 <%--                                            <form:errors path="lec" cssClass="error"/>--%>
                                         </div>
                                     </div>

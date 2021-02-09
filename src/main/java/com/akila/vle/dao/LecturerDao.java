@@ -8,4 +8,5 @@ public interface LecturerDao {
 
     public int[][] saveLecture(LectureBean lectureBean);
     public List<LectureBean> getAllStudyMaterials(String subjectID);
+    int deleteLecture(int mID);
 }

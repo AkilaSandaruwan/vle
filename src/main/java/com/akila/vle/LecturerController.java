@@ -8,10 +8,7 @@ import com.akila.vle.dao.LoginDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -51,15 +48,25 @@ public class LecturerController {
         }
         List <LectureBean> lecture=null;
         lecture = lecturerDao.getAllStudyMaterials(subjectID);
+        String lecN=null;
 
+        if (lecture.size()!=0){
+            int lecNum = Integer.parseInt(lecture.get(lecture.size()-1).getLec().substring(8));
+            lecN = lecture.get(lecture.size()-1).getLec().substring(0,8)+(++lecNum);
+        }
+        else {
+            lecN = "Lecture_1";
+        }
+
+        model.addAttribute("lecN",lecN);
         model.addAttribute("lecture",lecture);
         model.addAttribute("subjectIDa",subjectID);
         return "subject";
     }
 
     //Add Lecture
-    @RequestMapping("/addLecture/{subjectID}")
-    public String addLecPage(@PathVariable("subjectID") String subjectID,@ModelAttribute("lectureBean") LectureBean lectureBean, HttpSession httpSession, Principal principal, Model model){
+    @RequestMapping("/addLecture/{subjectID}/{lec}")
+    public String addLecPage(@PathVariable("subjectID") String subjectID,@PathVariable("lec") String lec,@ModelAttribute("lectureBean") LectureBean lectureBean, HttpSession httpSession, Principal principal, Model model){
 
         if (httpSession.getAttribute("userBean")==null){
             String username= principal.getName();
@@ -70,12 +77,13 @@ public class LecturerController {
         }
 
         lectureBean.setSubjectID(subjectID);
+        lectureBean.setLec(lec);
         model.addAttribute("lectureBean",lectureBean);
         return "addLecture";
     }
 
     //Save Lecture
-    @RequestMapping("/savelecture")
+    @PostMapping("/savelecture")
     public String saveLecture(@ModelAttribute("lectureBean") LectureBean lectureBean, RedirectAttributes redirectAttributes,Model model, HttpSession httpSession, Principal principal){
 
         if (httpSession.getAttribute("userBean")==null){
@@ -83,13 +91,37 @@ public class LecturerController {
             UserBean userBean = loginDao.getLoggedUser(username);
             httpSession.setAttribute("userBean",userBean);
         }
-
+        System.out.println(lectureBean.getLec());
+        System.out.println(lectureBean.getTopic());
+        System.out.println(lectureBean.getSubjectID());
+        System.out.println(lectureBean.getDes());
 
         if (lecturerDao.saveLecture(lectureBean)==null){
             redirectAttributes.addFlashAttribute("error","Please try Again...");
-            return "redirect:/lecturer/addLecture/"+lectureBean.getSubjectID();
+            return "redirect:/lecturer/addLecture/"+lectureBean.getSubjectID()+"/"+lectureBean.getLec();
         }else {
             return "redirect:/lecturer/subject/"+lectureBean.getSubjectID();
+        }
+
+    }
+
+    //Delete Lecture
+    @RequestMapping("/deletelecture/{mID}/{subjectID}")
+    public String deleteLecture(@PathVariable("mID") int mID,@PathVariable("subjectID") String subjectID , RedirectAttributes redirectAttributes,Model model, HttpSession httpSession, Principal principal){
+
+        if (httpSession.getAttribute("userBean")==null){
+            String username= principal.getName();
+            UserBean userBean = loginDao.getLoggedUser(username);
+            httpSession.setAttribute("userBean",userBean);
+        }
+
+        int delete = lecturerDao.deleteLecture(mID);
+
+        if (delete==0){
+            redirectAttributes.addFlashAttribute("delete", "Delete operation failed...");
+            return "redirect:/lecturer/subject/"+subjectID;
+        }else{
+            return "redirect:/lecturer/subject/"+subjectID;
         }
 
     }

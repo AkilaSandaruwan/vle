@@ -210,9 +210,12 @@
                 <div style="background-color:white;padding-bottom: 30px; margin: 10px -1.6vw 10px 5px;border-radius: 5px;">
                    <div>
                        <h4 style="padding:20px 20px 10px 20px;display: inline-block">Study Materials</h4>
+                       <c:if test="${delete!=null}">
+                           <h6 style="color: red"><c:out value="${delete}"/></h6>
+                       </c:if>
 
                        <c:if test="${sessionScope.userBean.role.equals('LEC')}">
-                           <a href="${pageContext.request.contextPath}/lecturer/addLecture/${subjectID}"><button class="btn btn-dark" style="display: inline-block;float: right;border-color: #f1f1f1;margin: 15px 20px auto auto">Add New</button></a>
+                           <a href="${pageContext.request.contextPath}/lecturer/addLecture/${subjectID}/${lecN}"><button class="btn btn-dark" style="display: inline-block;float: right;border-color: #f1f1f1;margin: 15px 20px auto auto">Add New</button></a>
                        </c:if>
                    </div>
                     <hr>
@@ -351,7 +354,7 @@
                                 </div>
 
                                 <c:if test="${sessionScope.userBean.role.equals('LEC')}">
-                                    <div style="text-align: end;padding-right: 20px"><a href="#" >Delete</a></div>
+                                    <div style="text-align: end;padding-right: 20px"><a href="${pageContext.request.contextPath}/lecturer/deletelecture/${lec.mID}/${subjectID}" >Delete</a></div>
                                 </c:if>
 
 
