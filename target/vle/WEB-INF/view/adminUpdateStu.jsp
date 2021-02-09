@@ -110,9 +110,9 @@
             <div class="col-md-2" style="padding-left: 5px" >
                 <div style="background-color:white;padding-bottom: 30px;margin: 10px 0 auto 10px;border-radius: 5px;">
                     <div>
-                        <img src="<spring:url value='/resources/images/common/sidebar.png'/>" width="60%" style="display: block;padding-top: 40px;padding-bottom: 10px;margin-left: auto;margin-right: auto;">
+                        <img src="<spring:url value='/resources/images/common/sidebar.png'/>" width="60%" style="display: block;padding-top: 5px;padding-bottom: 0;margin-left: auto;margin-right: auto;">
                     </div>
-                    <div class="list-group" style="padding: 20px;">
+                    <div class="list-group" style="padding: 5px 20px 20px 20px;">
                         <a href="${pageContext.request.contextPath}/" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">Home</a>
                         <a href="${pageContext.request.contextPath}/profile" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">Profile</a>
                         <a href="${pageContext.request.contextPath}/admin/adminLecView" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">Lecturers</a>

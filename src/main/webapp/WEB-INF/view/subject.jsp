@@ -153,9 +153,9 @@
             <div class="col-md-2 position-fixed">
                 <div  style="background-color:white;padding-bottom: 15px;margin: 10px 0 auto 5px;border-radius: 5px;">
                     <div>
-                        <img src="<spring:url value='/resources/images/common/sidebar.png'/>" width="60%" style="display: block;padding-top: 40px;padding-bottom: 10px;margin-left: auto;margin-right: auto;">
+                        <img src="<spring:url value='/resources/images/common/sidebar.png'/>" width="60%" style="display: block;padding-top: 5px;padding-bottom: 0;margin-left: auto;margin-right: auto;">
                     </div>
-                    <div class="list-group" style="padding: 20px;">
+                    <div class="list-group" style="padding: 5px 20px 20px 20px;">
                         <a href="${pageContext.request.contextPath}/" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">Home</a>
                         <c:if test="${sessionScope.userBean.role!=null}">
                             <a href="${pageContext.request.contextPath}/profile" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">Profile</a>
@@ -170,12 +170,12 @@
                         <a href="${pageContext.request.contextPath}/contact" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">Contact</a>
                     </div>
                 </div>
-                <c:if test="${!sessionScope.userBean.role.equals('ADMIN')}">
+                <c:if test="${!sessionScope.userBean.role.equals('ADMIN') && sessionScope.userBean.role!=null && sessionScope.userBean.subjects.size()!=0}">
                     <div style="background-color:white;padding-bottom: 15px;margin: 10px 0 auto 5px;border-radius: 5px;">
                         <div>
                             <h6 style="padding: 10px 5px 5px 20px">Subjects</h6>
                         </div>
-                        <div class="list-group" style="padding: 5px 20px 20px 20px;">
+                        <div class="list-group" style="padding: 5px 20px 20px 20px;overflow-x: hidden;overflow-y: auto; max-height:200px">
 
                             <c:forEach var="sub" items="${sessionScope.subjects}">
                                 <c:if test="${sub.subjectID.equals(subjectID)}">
@@ -262,12 +262,62 @@
                                             <div style="padding: 7px 20px 10px 40px">
                                                 <a href="${pageContext.request.contextPath}/download/${material.fID}/${subjectID}?name=${material.fileName}" style="color: black;font-size: 17px">
 
-                                                    <c:if test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equals('pdf'))}">
-                                                        <i style="color: red;font-size: 1.4em" class="fas fa-file-pdf"></i>
-                                                    </c:if>
-                                                    <c:if test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equals('doc'))}">
-                                                        <i style="color: blue;font-size: 1.4em" class="fas fa-file-word"></i>
-                                                    </c:if>
+<%--                                                    <c:if test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equals('pdf'))}">--%>
+<%--                                                        <i style="color: red;font-size: 1.4em" class="fas fa-file-pdf"></i>--%>
+<%--                                                    </c:if>--%>
+<%--                                                    <c:if test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equals('doc'))}">--%>
+<%--                                                        <i style="color: blue;font-size: 1.4em" class="fas fa-file-word"></i>--%>
+<%--                                                    </c:if>--%>
+<%--                                                    <c:if test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equals('docx'))}">--%>
+<%--                                                    <i style="color: blue;font-size: 1.4em" class="fas fa-file-word"></i>--%>
+<%--                                                    </c:if>--%>
+<%--                                                    <c:if test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equals('docx'))}">--%>
+<%--                                                        <i style="color: blue;font-size: 1.4em" class="fas fa-file-word"></i>--%>
+<%--                                                    </c:if>--%>
+
+                                                    <c:choose>
+                                                        <c:when test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equalsIgnoreCase('pdf'))}">
+                                                            <i style="color: red;font-size: 1.4em" class="fas fa-file-pdf"></i>
+                                                        </c:when>
+                                                        <c:when test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equalsIgnoreCase('doc'))}">
+                                                            <i style="color: blue;font-size: 1.4em" class="fas fa-file-word"></i>
+                                                        </c:when>
+                                                        <c:when test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equalsIgnoreCase('docx'))}">
+                                                            <i style="color: blue;font-size: 1.4em" class="fas fa-file-word"></i>
+                                                        </c:when>
+                                                        <c:when test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equalsIgnoreCase('dotx'))}">
+                                                            <i style="color: blue;font-size: 1.4em" class="fas fa-file-word"></i>
+                                                        </c:when>
+                                                        <c:when test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equalsIgnoreCase('jpg'))}">
+                                                            <i style="color: darkorange;font-size: 1.4em" class="fas fa-image"></i>
+                                                        </c:when>
+                                                        <c:when test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equalsIgnoreCase('png'))}">
+                                                            <i style="color: darkorange;font-size: 1.4em" class="fas fa-image"></i>
+                                                        </c:when>
+                                                        <c:when test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equalsIgnoreCase('jpeg'))}">
+                                                            <i style="color: darkorange;font-size: 1.4em" class="fas fa-image"></i>
+                                                        </c:when>
+                                                        <c:when test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equalsIgnoreCase('xls'))}">
+                                                            <i style="color: #3e8e41;font-size: 1.4em" class="fas fa-file-excel"></i>
+                                                        </c:when>
+                                                        <c:when test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equalsIgnoreCase('txt'))}">
+                                                            <i style="color: darkturquoise;font-size: 1.4em" class="far fa-file-alt">"></i>
+                                                        </c:when>
+                                                        <c:when test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equalsIgnoreCase('ppt'))}">
+                                                            <i style="color: goldenrod;font-size: 1.4em" class="fas fa-file-powerpoint"></i>
+                                                        </c:when>
+                                                        <c:when test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equalsIgnoreCase('pptx'))}">
+                                                            <i style="color: goldenrod;font-size: 1.4em" class="fas fa-file-powerpoint"></i>
+                                                        </c:when>
+                                                        <c:when test="${(material.fileName.substring(material.fileName.lastIndexOf('.')+1).equalsIgnoreCase('xlsx'))}">
+                                                            <i style="color: #3e8e41;font-size: 1.4em" class="fas fa-file-excel"></i>
+                                                        </c:when>
+                                                        <c:otherwise>
+
+                                                            <i style="color: dimgrey;font-size: 1.4em" class="fas fa-file-download"></i>
+
+                                                        </c:otherwise>
+                                                    </c:choose>
 
                                                     &nbsp;&nbsp;${material.fileName}
                                                 </a>

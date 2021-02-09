@@ -84,6 +84,7 @@ public class LecturerController {
             httpSession.setAttribute("userBean",userBean);
         }
 
+
         if (lecturerDao.saveLecture(lectureBean)==null){
             redirectAttributes.addFlashAttribute("error","Please try Again...");
             return "redirect:/lecturer/addLecture/"+lectureBean.getSubjectID();

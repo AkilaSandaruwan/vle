@@ -113,11 +113,11 @@
     <div style="margin-top: 70px">
         <div class="row" style="background-color:#d2cdff">
             <div class="col-md-2 position-fixed">
-                <div  style="background-color:white;padding-bottom: 15px;margin: 10px 0 auto 5px;border-radius: 5px;">
+                <div  style="background-color:white;padding-bottom: 15px;margin: 10px 0 auto 5px;border-radius: 5px">
                     <div>
-                        <img src="<spring:url value='/resources/images/common/sidebar.png'/>" width="60%" style="display: block;padding-top: 40px;padding-bottom: 10px;margin-left: auto;margin-right: auto;">
+                        <img src="<spring:url value='/resources/images/common/sidebar.png'/>" width="60%" style="display: block;padding-top: 5px;padding-bottom: 0;margin-left: auto;margin-right: auto;">
                     </div>
-                    <div class="list-group" style="padding: 20px;">
+                    <div class="list-group" style="padding: 5px 20px 20px 20px;">
                             <a href="#" class="list-group-item-secondary list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">Home</a>
                             <c:if test="${sessionScope.userBean.role!=null}">
                                 <a href="${pageContext.request.contextPath}/profile" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">Profile</a>
@@ -131,12 +131,12 @@
                         <a href="${pageContext.request.contextPath}/contact" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">Contact</a>
                     </div>
                 </div>
-                <c:if test="${!sessionScope.userBean.role.equals('ADMIN') && sessionScope.userBean.role!=null}">
+                <c:if test="${!sessionScope.userBean.role.equals('ADMIN') && sessionScope.userBean.role!=null && sessionScope.userBean.subjects.size()!=0}">
                     <div style="background-color:white;padding-bottom: 15px;margin: 10px 0 auto 5px;border-radius: 5px;">
                         <div>
                             <h6 style="padding: 10px 5px 5px 20px">Subjects</h6>
                         </div>
-                        <div class="list-group" style="padding: 5px 20px 20px 20px;">
+                        <div class="list-group" style="padding: 5px 20px 20px 20px;overflow-x: hidden;overflow-y: auto; max-height:200px ">
 
                             <c:forEach var="sub" items="${sessionScope.subjects}">
                                 <c:if test="${sub.subjectID.equals(subjectID)}">
@@ -222,9 +222,6 @@
             </div>
         </div>
     </div>
-</div>
-<div style="height: 60px; color:aliceblue; background-color: darkcyan; width: 100%; display: flex;text-align: center;position: relative;bottom: 0">
-    <span style="font-size: 15px;margin:auto ;display: inline-block">Student Management System.</span>
 </div>
 
 
