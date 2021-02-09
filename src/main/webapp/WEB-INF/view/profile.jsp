@@ -391,7 +391,7 @@
     <div style="margin-top: 70px;">
         <div class="row" style="background-color:#d2cdff">
             <div class="col-md-2 position-fixed" style="padding-left: 5px" >
-                <div style="background-color:white;padding-bottom: 30px;margin: 10px 0 auto 5px;border-radius: 5px;">
+                <div style="background-color:white;padding-bottom: 15px;margin: 10px 0 auto 5px;border-radius: 5px;">
                     <div>
                         <img src="<spring:url value='/resources/images/common/sidebar.png'/>" width="60%" style="display: block;padding-top: 40px;padding-bottom: 10px;margin-left: auto;margin-right: auto;">
                     </div>
@@ -405,24 +405,41 @@
                             <a href="admin/adminStuView" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">Students</a>
                             <a href="${pageContext.request.contextPath}/admin/adminSubView" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">Subjects</a>
                         </c:if>
-                        <c:if test="${!sessionScope.userBean.role.equals('ADMIN')}">
-
-                            <c:forEach var="sub" items="${sessionScope.subjects}">
-                                <c:choose>
-                                    <c:when test="${sessionScope.userBean.role.equals('STU')}">
-                                        <a href="${pageContext.request.contextPath}/student/subject/${sub.subjectID}?name=${sub.name}" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px;font-weight: 490 ">${sub.name}</a>
-                                    </c:when>
-                                    <c:when test="${sessionScope.userBean.role.equals('LEC')}">
-                                        <a href="${pageContext.request.contextPath}/lecturer/subject/${sub.subjectID}?name=${sub.name}" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px;font-weight: 490 ">${sub.name}</a>
-                                    </c:when>
-                                </c:choose>
-                            </c:forEach>
-
-                        </c:if>
                         <a href="${pageContext.request.contextPath}/about" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">About</a>
                         <a href="${pageContext.request.contextPath}/contact" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px">Contact</a>
                     </div>
                 </div>
+                    <c:if test="${!sessionScope.userBean.role.equals('ADMIN')}">
+                        <div style="background-color:white;padding-bottom: 15px;margin: 10px 0 auto 5px;border-radius: 5px;">
+                            <div>
+                                <h6 style="padding: 10px 5px 5px 20px">Subjects</h6>
+                            </div>
+                            <div class="list-group" style="padding: 5px 20px 20px 20px;">
+
+                                <c:forEach var="sub" items="${sessionScope.subjects}">
+                                    <c:if test="${sub.subjectID.equals(subjectID)}">
+                                        <c:if test="${sessionScope.userBean.role.equals('LEC')}">
+                                            <a href="${pageContext.request.contextPath}/lecturer/subject/${sub.subjectID}?name=${sub.name}" class="list-group-item-secondary list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px;font-weight: 490 ">${sub.name}</a>
+                                        </c:if>
+                                        <c:if test="${sessionScope.userBean.role.equals('STU')}">
+                                            <a href="${pageContext.request.contextPath}/student/subject/${sub.subjectID}?name=${sub.name}" class="list-group-item-secondary list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px;font-weight: 490 ">${sub.name}</a>
+                                        </c:if>
+                                    </c:if>
+                                    <c:if test="${!sub.subjectID.equals(subjectID)}">
+                                        <c:if test="${sessionScope.userBean.role.equals('LEC')}">
+                                            <a href="${pageContext.request.contextPath}/lecturer/subject/${sub.subjectID}?name=${sub.name}" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px;font-weight: 490 ">${sub.name}</a>
+                                        </c:if>
+                                        <c:if test="${sessionScope.userBean.role.equals('STU')}">
+                                            <a href="${pageContext.request.contextPath}/student/subject/${sub.subjectID}?name=${sub.name}" class="list-group-item list-group-item-action" style="text-align: center;font-size: 1.3vw;padding: 5px;font-weight: 490 ">${sub.name}</a>
+                                        </c:if>
+
+                                    </c:if>
+
+                                </c:forEach>
+
+                            </div>
+                        </div>
+                    </c:if>
             </div>
             <div class="col-md-10" style="margin-left:15vw;" >
 

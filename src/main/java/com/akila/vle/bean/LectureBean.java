@@ -13,15 +13,34 @@ public class LectureBean {
     private String des;
     private String subjectID;
     private List<CommonsMultipartFile> files;
-    private List <String>  materials;
+    private List <StudyMaterial>  materials;
+    private String CreationDate;
+    private int mID;
 
-    public List<String> getMaterials() {
+    public List<StudyMaterial> getMaterials() {
         return materials;
     }
 
-    public void setMaterials(List<String> materials) {
+    public void setMaterials(List<StudyMaterial> materials) {
         this.materials = materials;
     }
+
+    public int getmID() {
+        return mID;
+    }
+
+    public void setmID(int mID) {
+        this.mID = mID;
+    }
+
+    public String getCreationDate() {
+        return CreationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        CreationDate = creationDate;
+    }
+
 
     public String getSubjectID() {
         return subjectID;

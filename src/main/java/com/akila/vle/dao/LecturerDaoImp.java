@@ -75,19 +75,26 @@ public class LecturerDaoImp implements LecturerDao{
     @Override
     public List<LectureBean> getAllStudyMaterials(String subjectID) {
 
-        String get_material_sql= "SELECT lec, topic, des FROM studymaterial WHERE  subjectID='"+subjectID+"'";
-        String get_files_sql= "SELECT name FROM lecturefiles WHERE  mID='"+subjectID+"'";
+        String get_material_sql= "SELECT lec, topic, des, CreationDate,mID  FROM studymaterial WHERE  subjectID='"+subjectID+"' ORDER BY lec";
+        String get_files_sql= "SELECT name, fID FROM lecturefiles WHERE  mID=?";
 
         return template.query(get_material_sql,new RowMapper<LectureBean>(){
             public LectureBean mapRow(ResultSet rs, int row) throws SQLException, SQLException {
                 LectureBean e=new LectureBean();
-                e.setLec(rs.getString("lect"));
+                e.setLec(rs.getString("lec"));
                 e.setTopic(rs.getString("topic"));
                 e.setDes(rs.getString("des"));
+                e.setCreationDate(rs.getString("CreationDate"));
+                e.setmID(rs.getInt("mID"));
 
-                List<String> files = template.query(get_files_sql,new RowMapper<String>(){
-                    public String mapRow(ResultSet rs, int row) throws SQLException, SQLException {
-                        return rs.getString("name");
+                List<StudyMaterial> files = template.query(get_files_sql,new Object[]{e.getmID()}, new RowMapper<StudyMaterial>(){
+                    public StudyMaterial mapRow(ResultSet rs, int row) throws SQLException, SQLException {
+                        StudyMaterial studyMaterial = new StudyMaterial();
+                        studyMaterial.setfID(rs.getInt("fID"));
+                        studyMaterial.setFileName(rs.getString("name"));
+                        System.out.println(studyMaterial.getFileName());
+                        return studyMaterial;
+
                     }
                 });
 

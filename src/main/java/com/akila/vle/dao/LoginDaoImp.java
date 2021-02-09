@@ -86,4 +86,12 @@ public class LoginDaoImp implements LoginDao{
 
         return 1;
     }
+
+    public String getLecture(int fID){
+
+        String sql="SELECT file FROM lecturefiles WHERE fID="+fID;
+
+        return template.queryForObject(sql,String.class);
+
+    }
 }

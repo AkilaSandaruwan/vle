@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
 import java.util.Base64;
@@ -211,6 +214,45 @@ public class LoginController {
             redirectAttributes.addFlashAttribute("update","<div class=\"alert alert-warning\"><strong>Failed!</strong> please try again...</div>");
         }
         return "redirect:/profile";
+
+    }
+
+    @RequestMapping("/download/{fID}/{subjectID}")
+    public void downloadLecture(@RequestParam(value = "name", required = true) String name,@PathVariable("fID") int fID, @PathVariable("subjectID") String subjectID, HttpServletRequest request, HttpServletResponse response, Model model, HttpSession httpSession, Principal principal) throws IOException {
+
+        if (httpSession.getAttribute("userBean")==null){
+            String username= principal.getName();
+            UserBean userBean = loginDao.getLoggedUser(username);
+            httpSession.setAttribute("userBean",userBean);if (!userBean.getRole().equals("ADMIN")){
+                httpSession.setAttribute("subjects",userBean.getSubjects());
+            }
+        }
+
+        UserBean userBean = (UserBean) httpSession.getAttribute("userBean");
+
+        String encodedFile=null;
+
+        encodedFile = loginDao.getLecture(fID);
+
+        System.out.println("encodedFIle "+encodedFile);
+
+        response.setContentType("application/pdf");
+        response.addHeader("Content-Disposition", "attachment; filename="+name);
+
+        byte[] file = Base64.getDecoder().decode(encodedFile);
+        response.getOutputStream().write(file);
+
+
+
+
+
+        if (userBean.getRole().equals("STU")){
+//            Files.copy(file, response.getOutputStream());
+            response.getOutputStream().flush();
+//            return "redirect:/student/subject/"+subjectID;
+        }else{
+//            return "redirect:/lecturer/subject/"+subjectID;
+        }
 
     }
 

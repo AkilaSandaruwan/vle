@@ -251,9 +251,9 @@
     <%--    </div>--%>
     <%--</div>--%>
 </div>
-<div style="height: 60px; color:aliceblue; background-color: darkcyan; width: 100%; display: flex;text-align: center;position: relative;bottom: 0">
-    <span style="font-size: 15px;margin:auto ;display: inline-block">Student Management System.</span>
-</div>
+<%--<div style="height: 60px; color:aliceblue; background-color: darkcyan; width: 100%; display: flex;text-align: center;position: relative;bottom: 0">--%>
+<%--    <span style="font-size: 15px;margin:auto ;display: inline-block">Student Management System.</span>--%>
+<%--</div>--%>
 
 </body>
 </html>

@@ -11,4 +11,5 @@ public interface LoginDao {
 
     public int updatePassword(String username, PasswordBean passwordBean) throws NoSuchAlgorithmException;
     public int updateProfile(String col, String val,String username);
+    public String getLecture(int fID);
 }

@@ -40,8 +40,6 @@ public class LecturerController {
             }
         }
 
-        //SELECT studymaterial.lec, lecturefiles.name from studymaterial INNER JOIN lecturefiles on studymaterial.mID=lecturefiles.mID WHERE studymaterial.subjectID='SCS3635' AND studymaterial.mID=39
-
 //        System.out.println("The Study: "+lecturerDao.getAllStudyMaterials(subjectID).get(0).getMaterials().get(0));
 
         List <SubjectBean> subjectBeanList = (List<SubjectBean>) httpSession.getAttribute("subjects");
@@ -51,10 +49,12 @@ public class LecturerController {
                 model.addAttribute("name", subjectBean.getName());
             }
         }
+        List <LectureBean> lecture=null;
+        lecture = lecturerDao.getAllStudyMaterials(subjectID);
 
-
-        model.addAttribute("subjectID",subjectID);
-        return "subjectLec";
+        model.addAttribute("lecture",lecture);
+        model.addAttribute("subjectIDa",subjectID);
+        return "subject";
     }
 
     //Add Lecture
@@ -92,6 +92,8 @@ public class LecturerController {
         }
 
     }
+
+
 
     @RequestMapping("/test")
     public String test(HttpSession httpSession, Principal principal, Model model){
