@@ -105,6 +105,29 @@ public class LecturerController {
 
     }
 
+//    //Save Lecture
+//    @PostMapping("/saveAttachment")
+//    public String saveAttachment(RequestParam("files") List<CommonsMultipartFile> , RedirectAttributes redirectAttributes,Model model, HttpSession httpSession, Principal principal){
+//
+//        if (httpSession.getAttribute("userBean")==null){
+//            String username= principal.getName();
+//            UserBean userBean = loginDao.getLoggedUser(username);
+//            httpSession.setAttribute("userBean",userBean);
+//        }
+//        System.out.println(lectureBean.getLec());
+//        System.out.println(lectureBean.getTopic());
+//        System.out.println(lectureBean.getSubjectID());
+//        System.out.println(lectureBean.getDes());
+//
+//        if (lecturerDao.saveLecture(lectureBean)==null){
+//            redirectAttributes.addFlashAttribute("error","Please try Again...");
+//            return "redirect:/lecturer/addLecture/"+lectureBean.getSubjectID()+"/"+lectureBean.getLec();
+//        }else {
+//            return "redirect:/lecturer/subject/"+lectureBean.getSubjectID();
+//        }
+//
+//    }
+
     //Delete Lecture
     @RequestMapping("/deletelecture/{mID}/{subjectID}")
     public String deleteLecture(@PathVariable("mID") int mID,@PathVariable("subjectID") String subjectID , RedirectAttributes redirectAttributes,Model model, HttpSession httpSession, Principal principal){
@@ -116,6 +139,27 @@ public class LecturerController {
         }
 
         int delete = lecturerDao.deleteLecture(mID);
+
+        if (delete==0){
+            redirectAttributes.addFlashAttribute("delete", "Delete operation failed...");
+            return "redirect:/lecturer/subject/"+subjectID;
+        }else{
+            return "redirect:/lecturer/subject/"+subjectID;
+        }
+
+    }
+
+    //Delete Lecture
+    @RequestMapping("/deleteAttachment/{fID}/{subjectID}")
+    public String deleteAttachment(@PathVariable("fID") int fID,@PathVariable("subjectID") String subjectID , RedirectAttributes redirectAttributes,Model model, HttpSession httpSession, Principal principal){
+
+        if (httpSession.getAttribute("userBean")==null){
+            String username= principal.getName();
+            UserBean userBean = loginDao.getLoggedUser(username);
+            httpSession.setAttribute("userBean",userBean);
+        }
+
+        int delete = lecturerDao.deleteAttachment(fID);
 
         if (delete==0){
             redirectAttributes.addFlashAttribute("delete", "Delete operation failed...");

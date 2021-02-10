@@ -116,5 +116,12 @@ public class LecturerDaoImp implements LecturerDao{
 
     }
 
+    @Override
+    public int deleteAttachment(int fID) {
+        String sql = "DELETE FROM lecturefiles WHERE fID=?";
+
+        return template.update(sql,fID);
+    }
+
 
 }

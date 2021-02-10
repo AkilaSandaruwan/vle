@@ -2,6 +2,10 @@ function setUrl(url){
     document.getElementById('delete_url').href=url;
 }
 
+function setUrl_file(url){
+    document.getElementById('delete_file_action').href=url;
+}
+
 function setButton(){
     document.getElementById("submitbtn").style.display="";
 

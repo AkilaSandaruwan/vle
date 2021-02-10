@@ -165,7 +165,7 @@
                     <div class="table-responsive" style="background-color:white;margin: 10px 50px 10px -1vw;border-radius: 5px;padding:0 5px 5px 5px">
                             <table class="table table-striped" style="margin: auto auto">
 
-                                    <thead style="position: sticky !important;top:0 !important;">
+                                    <thead>
                                     <tr style="">
                                         <th>Student_ID</th>
                                         <th>Firstname</th>

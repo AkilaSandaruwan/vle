@@ -82,7 +82,9 @@
         .dropdown:hover .dropbtn {background-color: #3e8e41;}
     </style>
 
-    <title>Welcome to VLE</title>
+    <script src="<spring:url value='/resources/common.js'/>"></script>
+
+    <title>${subjectID}</title>
 </head>
 <body style="background-color:#d2cdff;min-height: 100%;height: 100%">
 
@@ -91,14 +93,14 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Add new Lecture Material</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Add new lecture material</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div>
-                    <form action="#">
+                    <form action="" id="add_attachment" enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <label>Lecture Material:</label>
                             <input type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple="multiple" name="files" id="files" class="form-control"/>
@@ -115,6 +117,47 @@
     </div>
 </div>
 <%--End of Model Email--%>
+
+<!-- Modal -->
+<div class="modal fade" id="delete_lec" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delete_lec_title">Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this lecture?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a id="delete_url" href="" type="button" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="delete_file" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delete_file_title">Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this attachment?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a id="delete_file_action" href="" type="button" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container-fluid">
     <div class="fixed-top">
@@ -211,7 +254,7 @@
                    <div>
                        <h4 style="padding:20px 20px 10px 20px;display: inline-block">Study Materials</h4>
                        <c:if test="${delete!=null}">
-                           <h6 style="color: red"><c:out value="${delete}"/></h6>
+                           <h6 style="color: red;padding-left: 20px"><c:out value="${delete}"/></h6>
                        </c:if>
 
                        <c:if test="${sessionScope.userBean.role.equals('LEC')}">
@@ -325,7 +368,7 @@
                                                     &nbsp;&nbsp;${material.fileName}
                                                 </a>
                                                 &nbsp;&nbsp;  <c:if test="${sessionScope.userBean.role.equals('LEC')}">
-                                                        <a href="" data-toggle="modal" onclick="setUrl('deleteUser/${stu.username}')" data-target="#exampleModalCenter" ><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="" data-toggle="modal" onclick="setUrl_file('${pageContext.request.contextPath}/lecturer/deleteAttachment/${material.fID}/${subjectID}')" data-target="#delete_file" ><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </c:if>
                                             </div>
                                         </c:forEach>
@@ -354,7 +397,8 @@
                                 </div>
 
                                 <c:if test="${sessionScope.userBean.role.equals('LEC')}">
-                                    <div style="text-align: end;padding-right: 20px"><a href="${pageContext.request.contextPath}/lecturer/deletelecture/${lec.mID}/${subjectID}" >Delete</a></div>
+                                    <div style="text-align: end;padding-right: 20px"><a href="" data-toggle="modal" onclick="setUrl('${pageContext.request.contextPath}/lecturer/deletelecture/${lec.mID}/${subjectID}');" data-target="#delete_lec"  >Delete &nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
+
                                 </c:if>
 
 

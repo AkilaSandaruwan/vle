@@ -2,6 +2,13 @@ function setUrl(url){
     document.getElementById('delete_url').href=url;
 }
 
+function setUrl_file(url){
+    document.getElementById('delete_file_action').href=url;
+}
+function setUrl_attachmentForm(url){
+    document.getElementById('add_attachment').action=url;
+}
+
 function setButton(){
     document.getElementById("submitbtn").style.display="";
 
