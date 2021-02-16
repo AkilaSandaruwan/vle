@@ -78,7 +78,6 @@ public class AdminController {
             }
         }
 
-
     }
 
     //lecturer View
@@ -95,7 +94,6 @@ public class AdminController {
         model.addAttribute("lec_list",list);
         return "adminLecView";
     }
-
 
     //Add lecturer form
     @RequestMapping("/addLecturer")
@@ -128,9 +126,6 @@ public class AdminController {
             model.addAttribute("UpdateFailed", UpdateFailed);
         }
         return "adminUpdateLec";
-
-
-
     }
 
     //Update lecturer action
@@ -168,8 +163,6 @@ public class AdminController {
             UserBean userBean = loginDao.getLoggedUser(username);
             httpSession.setAttribute("userBean",userBean);
         }
-
-//        return "adminAddStu";
 
         if(bindingResult.hasErrors())
         {
@@ -224,8 +217,6 @@ public class AdminController {
         return "adminAddStu";
     }
 
-
-
     //Update student from
     @RequestMapping("/updatestudentform/{username}")
     public String updateStudentForm(@ModelAttribute("Student") StudentBean student, BindingResult bindingResult, @PathVariable("username") String username,HttpServletRequest request,  Model model, Principal principal,HttpSession httpSession) {
@@ -243,8 +234,6 @@ public class AdminController {
                 model.addAttribute("UpdateFailed", UpdateFailed);
             }
             return "adminUpdateStu";
-        
-
 
     }
 
@@ -288,8 +277,6 @@ public class AdminController {
             httpSession.setAttribute("userBean",userBean);
         }
 
-        System.out.println(adminManage.getUserById("ADMIN").getSubjects());
-
         List <SubjectBean> list = adminManage.getAllSubjects();
         model.addAttribute("deleted",deleted);
         model.addAttribute("sub_list",list);
@@ -301,12 +288,9 @@ public class AdminController {
     @RequestMapping("/updatesubject/{subject_ID}")
     public String updateSubject(@Valid @ModelAttribute("subjectBean") SubjectBean subjectBean, BindingResult bindingResult,RedirectAttributes redirectAttributes,@PathVariable("subject_ID") String subject_ID,Model model,Principal principal) {
 
-//        subjectBean.setSubjectID(subjectID);
-
         List <LecturerBean> lecturerBean = adminManage.getAllLecturers();
         Map referenceData = new HashMap();
         Map<String,String> lecturer = new LinkedHashMap<String,String>();
-
 
         for (LecturerBean lecturerBean1 : lecturerBean){
             lecturer.put(lecturerBean1.getUsername(), lecturerBean1.getUsername()+"  -"+lecturerBean1.getfName()+" "+lecturerBean1.getlName()+" -"+lecturerBean1.getRank());
@@ -330,7 +314,6 @@ public class AdminController {
 
                 String msg = "Update Request Failed... please try again.";
                 model.addAttribute("UpdateFailed",msg);
-                System.out.println(msg);
                 return "redirect:/admin/updatesubjectform/"+subjectBean.getSubjectID();
             }
         }
@@ -352,12 +335,10 @@ public class AdminController {
         Map referenceData = new HashMap();
         Map<String,String> lecturer = new LinkedHashMap<String,String>();
 
-
         for (LecturerBean lecturerBean1 : lecturerBean){
             lecturer.put(lecturerBean1.getUsername(), lecturerBean1.getUsername()+"  -"+lecturerBean1.getfName()+" "+lecturerBean1.getlName()+" -"+lecturerBean1.getRank());
         }
         referenceData.put("lecturers", lecturer);
-
         model.addAttribute("lecturers",lecturer);
 
         SubjectBean subjectBean = adminManage.getSubjectById(subjectID);
@@ -367,9 +348,6 @@ public class AdminController {
             model.addAttribute("UpdateFailed", UpdateFailed);
         }
         return "adminUpdateSub";
-
-
-
     }
 
 
@@ -385,7 +363,6 @@ public class AdminController {
         List <LecturerBean> lecturerBean = adminManage.getAllLecturers();
         Map referenceData = new HashMap();
         Map<String,String> lecturer = new LinkedHashMap<String,String>();
-
 
         for (LecturerBean lecturerBean1 : lecturerBean){
             lecturer.put(lecturerBean1.getUsername(), lecturerBean1.getUsername()+"  -"+lecturerBean1.getfName()+" "+lecturerBean1.getlName()+" -"+lecturerBean1.getRank());
@@ -405,17 +382,14 @@ public class AdminController {
             UserBean userBean = loginDao.getLoggedUser(username);
             httpSession.setAttribute("userBean",userBean);
         }
-
         List <LecturerBean> lecturerBean = adminManage.getAllLecturers();
         Map referenceData = new HashMap();
         Map<String,String> lecturer = new LinkedHashMap<String,String>();
-
 
         for (LecturerBean lecturerBean1 : lecturerBean){
             lecturer.put(lecturerBean1.getUsername(), lecturerBean1.getUsername()+"  -"+lecturerBean1.getfName()+" "+lecturerBean1.getlName()+" -"+lecturerBean1.getRank());
         }
         referenceData.put("lecturers", lecturer);
-
         model.addAttribute("lecturers",lecturer);
 
         if(bindingResult.hasErrors())
@@ -441,8 +415,6 @@ public class AdminController {
                 return "adminAddSub";
             }
         }
-
-
     }
 
     //Delete Subject
@@ -459,22 +431,10 @@ public class AdminController {
         if (deleted!=0){
             redirectAttributes.addFlashAttribute("deleted","<p class=\"text-danger\"><strong>"+subjectID+"</strong> has been removed.</p>  ");
         }
-
             return "redirect:/admin/adminSubView";
-
-
-
     }
 
-
-
-
-
     //************************SUBJECT MANAGE END******************************
-
-
-
-
 
     //PDF generate student
     @RequestMapping("/pdf_stu")
@@ -485,7 +445,6 @@ public class AdminController {
             UserBean userBean = loginDao.getLoggedUser(username);
             httpSession.setAttribute("userBean",userBean);
         }
-
         List <StudentBean> list = adminManage.getAllStudents();
 
         ReportService reportService = new ReportService();
@@ -563,9 +522,7 @@ public class AdminController {
             return "redirect:/admin/adminStuView";
         }
 
-
     }
-
 
 }
 

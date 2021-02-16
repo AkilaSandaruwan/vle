@@ -27,29 +27,30 @@ public class LoginDaoImp implements LoginDao{
     public UserBean getLoggedUser(String username){
         String sql = "SELECT * FROM user WHERE username=?";
 
-        UserBean userBean = template.queryForObject(sql, new Object[]{username.toUpperCase(Locale.ROOT)},new BeanPropertyRowMapper<>(UserBean.class));
+        try{
+            UserBean userBean = template.queryForObject(sql, new Object[]{username.toUpperCase(Locale.ROOT)},new BeanPropertyRowMapper<>(UserBean.class));
+            assert userBean != null;
+            if (!userBean.getRole().equals("ADMIN")){
+                String all_subSQL="SELECT subject.subjectID, subject.name FROM subject INNER JOIN user ON subject.lecturer=user.username OR subject.year=user.year WHERE username='"+userBean.getUsername()+"'";
 
-        assert userBean != null;
-        if (!userBean.getRole().equals("ADMIN")){
-            String all_subSQL="SELECT subject.subjectID, subject.name FROM subject INNER JOIN user ON subject.lecturer=user.username OR subject.year=user.year WHERE username='"+userBean.getUsername()+"'";
+                List<SubjectBean> subjects = template.query(all_subSQL, new RowMapper<SubjectBean>() {
+                    @Override
+                    public SubjectBean mapRow(ResultSet resultSet, int i) throws SQLException {
 
-            List<SubjectBean> subjects = template.query(all_subSQL, new RowMapper<SubjectBean>() {
-                @Override
-                public SubjectBean mapRow(ResultSet resultSet, int i) throws SQLException {
+                        SubjectBean subjectBean = new SubjectBean();
+                        subjectBean.setSubjectID(resultSet.getString("subjectID"));
+                        subjectBean.setName(resultSet.getString("name"));
 
-                    SubjectBean subjectBean = new SubjectBean();
-                    subjectBean.setSubjectID(resultSet.getString("subjectID"));
-                    subjectBean.setName(resultSet.getString("name"));
-
-
-                    return subjectBean;
-                }
-            });
-            userBean.setSubjects(subjects);
+                        return subjectBean;
+                    }
+                });
+                userBean.setSubjects(subjects);
+            }
+            return userBean;
+        }catch (Exception exception){
+            System.out.println(exception);
+            return null;
         }
-
-        System.out.println("loggedUser");
-        return userBean;
     }
 
     @Override
@@ -59,39 +60,47 @@ public class LoginDaoImp implements LoginDao{
         String updatePasswordSQL="UPDATE user SET password=? WHERE username=?";
         int updated = 0;
         boolean isAuthenticated=false;
-        String oldPassword= passwordBean.getOpassword();
-        String newHashcode= MyService.hashPassword(passwordBean.getPassword());
-        System.out.println("My status: "+username);
 
-        String oldHashCOde=template.queryForObject(verifyUserSQL, new Object[]{username},String.class);
-       
+        try {
+            String oldPassword= passwordBean.getOpassword();
+            String newHashcode= MyService.hashPassword(passwordBean.getPassword());
+            System.out.println("My status: "+username);
 
-        if (oldHashCOde!=null){
-            isAuthenticated= BCrypt.checkpw(oldPassword, oldHashCOde);
+            String oldHashCOde=template.queryForObject(verifyUserSQL, new Object[]{username},String.class);
+
+            if (oldHashCOde!=null){
+                isAuthenticated= BCrypt.checkpw(oldPassword, oldHashCOde);
+            }
+            if (isAuthenticated){
+                updated=template.update(updatePasswordSQL, newHashcode,username);
+            }
+            return updated;
+        }catch (Exception exception){
+            System.out.println(exception);
+            return 0;
         }
-        if (isAuthenticated){
-            updated=template.update(updatePasswordSQL, newHashcode,username);
-        }
-
-        return updated;
     }
-
 
     public int updateProfile(String col, String val,String username){
 
-        String Sql="UPDATE user SET "+col+"='"+val+"' WHERE username='"+username+"'";
-
-        int updated=template.update(Sql);
-
-
-        return 1;
+        try {
+            String Sql="UPDATE user SET "+col+"='"+val+"' WHERE username='"+username+"'";
+            return template.update(Sql);
+        }catch (Exception exception){
+            System.out.println(exception);
+            return 0;
+        }
     }
 
     public String getLecture(int fID){
 
-        String sql="SELECT file FROM lecturefiles WHERE fID="+fID;
-
-        return template.queryForObject(sql,String.class);
+        try {
+            String sql="SELECT file FROM lecturefiles WHERE fID="+fID;
+            return template.queryForObject(sql,String.class);
+        }catch (Exception exception){
+            System.out.println(exception);
+            return null;
+        }
 
     }
 }

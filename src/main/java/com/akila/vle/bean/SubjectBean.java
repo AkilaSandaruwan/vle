@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 @Component
 public class SubjectBean {
 
-    @Size(min = 7,message = "subject_id is not valid. (ex: SCS1234)")
+    @Size(min = 7,max=7,message = "subject_id is not valid. (ex: SCS1234)")
     private String subjectID;
     @Size(min = 3,message = "subject name is not valid.")
     private String name;

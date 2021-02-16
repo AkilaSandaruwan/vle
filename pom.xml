@@ -139,6 +139,11 @@
           <version>3.8.0</version>
         </plugin>
         <plugin>
+          <groupId>WILD</groupId>
+        <artifactId>wild</artifactId>
+        <version>1.0.SNAPSHOP</version>
+      </plugin>
+        <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.1</version>
         </plugin>

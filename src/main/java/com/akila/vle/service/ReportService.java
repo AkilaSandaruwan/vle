@@ -49,13 +49,8 @@ public class ReportService {
 
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("Created By", "Admin");
-
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jrBeanCollectionDataSource);
-
-
-
             JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\akila_s\\Downloads\\lecturers.pdf");
-
             return true;
         }catch (FileNotFoundException | JRException exception){
             System.out.println(exception);

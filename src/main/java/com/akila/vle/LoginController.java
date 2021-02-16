@@ -63,8 +63,6 @@ public class LoginController {
             model.addAttribute("password",passwordBean);
             return "passwordChange";
         }
-
-
     }
 
     @RequestMapping("/updatepassword")
@@ -73,7 +71,6 @@ public class LoginController {
         int status = loginDao.updatePassword(username.toUpperCase(Locale.ROOT),passwordBean);
         if (status==0){
             redirectAttributes.addFlashAttribute("msg","Please enter your Current Password Correctly!");
-//            model.addAttribute("password",passwordBean);
             return "redirect:/changepassword";
         }else{
             if (!passwordBean.getPassword().equals(passwordBean.getCpassword())){
@@ -86,20 +83,7 @@ public class LoginController {
             }
 
         }
-
-
     }
-
-
-
-//    @RequestMapping("/updateprofile/{col}/{username}")
-//    public String updateProfile(@PathVariable Map<String, String> PathVarsMap,@ModelAttribute Map<String, String> modelVar){
-//        String col = PathVarsMap.get("col");
-//        String username = PathVarsMap.get("username");
-//        return "profile";
-//    }
-
-
 
     @RequestMapping("/logoutSuccessful")
     public String getLogoutSuccess(HttpSession httpSession,Model model,RedirectAttributes redirectAttributes) {
@@ -131,13 +115,10 @@ public class LoginController {
         if (!userBean.getRole().equals("ADMIN")){
             httpSession.setAttribute("subjects",userBean.getSubjects());
         }
-
         user=loginDao.getLoggedUser(principal.getName());
         model.addAttribute("updateFlash",flash);
-//        System.out.println("This is proPic Nme "+user.getProfilePic());
         model.addAttribute("profile",user);
         return "profile";
-
     }
 
     //update profile
@@ -191,13 +172,7 @@ public class LoginController {
 
                 byte[] fileContent = user.getPhoto().getBytes();
                 String encodedString = Base64.getEncoder().encodeToString(fileContent);
-
-//                System.out.println("base64 "+encodedString);
-//
-//
-//                System.out.println("profile Pic "+encodedString);
                 val= encodedString;
-
             default:
         }
 
@@ -206,8 +181,6 @@ public class LoginController {
         if (val != null) {
             updated = loginDao.updateProfile(col,val,user.getUsername());
         }
-
-        System.out.println("profile updated: "+updated);
         if (updated==1){
             redirectAttributes.addFlashAttribute("update","<div class=\"alert alert-success\"><strong>Success!</strong> "+col.substring(0,1).toUpperCase(Locale.ROOT)+col.substring(1)+" has successfully been updated...</div>");
         }else{
@@ -241,10 +214,6 @@ public class LoginController {
 
         byte[] file = Base64.getDecoder().decode(encodedFile);
         response.getOutputStream().write(file);
-
-
-
-
 
         if (userBean.getRole().equals("STU")){
 //            Files.copy(file, response.getOutputStream());

@@ -28,7 +28,6 @@ public class StudentController {
     LoginDao loginDao;
 
     //Get subject page
-
     @RequestMapping("/subject/{subjectID}")
     public String getSubjectPage(@PathVariable("subjectID") String subjectID, @RequestParam(value = "name", required = false) String name, HttpSession httpSession, Principal principal, Model model){
 
@@ -40,8 +39,6 @@ public class StudentController {
             }
         }
 
-//        System.out.println("The Study: "+lecturerDao.getAllStudyMaterials(subjectID).get(0).getMaterials().get(0));
-
         List <SubjectBean> subjectBeanList = (List<SubjectBean>) httpSession.getAttribute("subjects");
 
         for (SubjectBean subjectBean : subjectBeanList) {
@@ -49,7 +46,6 @@ public class StudentController {
                 model.addAttribute("name", subjectBean.getName());
             }
         }
-
 
         model.addAttribute("name",name);
         model.addAttribute("subjectID",subjectID);

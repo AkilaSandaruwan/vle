@@ -20,7 +20,6 @@ import java.util.Calendar;
 public class MyService {
     private static final String UPLOAD_DIRECTORY ="/images/profilePics";
 
-
     public static String hashPassword(String password) throws NoSuchAlgorithmException {
         String hashedPassword = null;
         int i = 0;
@@ -30,49 +29,30 @@ public class MyService {
 
             i++;
         }
-
-//            System.out.println(hashedPassword);
-
         return hashedPassword;
     }
 
     public static String profilePicUpload(CommonsMultipartFile photo, HttpServletRequest request, String fileName, HttpSession httpSession) throws IOException {
 
-        String fileExtension= FilenameUtils.getExtension(photo.getOriginalFilename());
-//        File imageFile = new File(request.getServletContext().getRealPath("profilePics"), fileName+"."+fileExtension);
-
-
-
-
-
         try
         {
+            String fileExtension= FilenameUtils.getExtension(photo.getOriginalFilename());
             ServletContext context = httpSession.getServletContext();
             String path = context.getRealPath(UPLOAD_DIRECTORY);
-
-//            String imageName = fileName+ Calendar.DATE;
-//            System.out.println(path+" "+ fileName);
-//            String imageName = photo.getOriginalFilename();
-
             SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");
             Date date = new Date();
 
             String imageName = fileName+"_"+formatter.format(date)+"."+fileExtension;
-            System.out.println("filename: "+ imageName);
-
-
             byte[] bytes = photo.getBytes();
             BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(
                     new File("C:\\Users\\akila_s\\Desktop\\Epic\\vle\\src\\main\\webapp\\WEB-INF\\resources\\images\\profilePics" + File.separator + imageName)));
             stream.write(bytes);
             stream.flush();
             stream.close();
-
             return imageName;
         } catch (IOException e)
         {
             e.printStackTrace();
-
             return null;
         }
 

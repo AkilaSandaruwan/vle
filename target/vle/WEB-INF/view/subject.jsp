@@ -93,14 +93,14 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Add new Lecture Material</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Add new lecture material</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div>
-                    <form action="#">
+                    <form action="" id="add_attachment" enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <label>Lecture Material:</label>
                             <input type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple="multiple" name="files" id="files" class="form-control"/>

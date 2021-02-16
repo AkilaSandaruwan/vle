@@ -55,7 +55,6 @@ public class LecturerDaoImp implements LecturerDao{
             if (material>=1 && lectureBean.getFiles().get(0).getSize()>0){
                 updateCounts = template.batchUpdate(sql_file,files, files.size(), new ParameterizedPreparedStatementSetter<StudyMaterial>(){
 
-
                     @Override
                     public void setValues(PreparedStatement preparedStatement, StudyMaterial studyMaterial) throws SQLException {
                         preparedStatement.setString(1,studyMaterial.getFileName());
@@ -63,7 +62,6 @@ public class LecturerDaoImp implements LecturerDao{
                     }
                 });
             }
-
             return updateCounts;
         }catch (Exception exception){
             System.out.println(exception);
@@ -75,44 +73,49 @@ public class LecturerDaoImp implements LecturerDao{
     @Override
     public List<LectureBean> getAllStudyMaterials(String subjectID) {
 
-        String get_material_sql= "SELECT lec, topic, des, CreationDate,mID  FROM studymaterial WHERE  subjectID='"+subjectID+"' ORDER BY lec";
-        String get_files_sql= "SELECT name, fID FROM lecturefiles WHERE  mID=?";
+        try{
+            String get_material_sql= "SELECT lec, topic, des, CreationDate,mID  FROM studymaterial WHERE  subjectID='"+subjectID+"' ORDER BY lec";
+            String get_files_sql= "SELECT name, fID FROM lecturefiles WHERE  mID=?";
 
-        return template.query(get_material_sql,new RowMapper<LectureBean>(){
-            public LectureBean mapRow(ResultSet rs, int row) throws SQLException, SQLException {
-                LectureBean e=new LectureBean();
-                e.setLec(rs.getString("lec"));
-                e.setTopic(rs.getString("topic"));
-                e.setDes(rs.getString("des"));
-                e.setCreationDate(rs.getString("CreationDate"));
-                e.setmID(rs.getInt("mID"));
+            return template.query(get_material_sql,new RowMapper<LectureBean>(){
+                public LectureBean mapRow(ResultSet rs, int row) throws SQLException, SQLException {
+                    LectureBean e=new LectureBean();
+                    e.setLec(rs.getString("lec"));
+                    e.setTopic(rs.getString("topic"));
+                    e.setDes(rs.getString("des"));
+                    e.setCreationDate(rs.getString("CreationDate"));
+                    e.setmID(rs.getInt("mID"));
 
-                List<StudyMaterial> files = template.query(get_files_sql,new Object[]{e.getmID()}, new RowMapper<StudyMaterial>(){
-                    public StudyMaterial mapRow(ResultSet rs, int row) throws SQLException, SQLException {
-                        StudyMaterial studyMaterial = new StudyMaterial();
-                        studyMaterial.setfID(rs.getInt("fID"));
-                        studyMaterial.setFileName(rs.getString("name"));
-                        System.out.println(studyMaterial.getFileName());
-                        return studyMaterial;
-
-                    }
-                });
-
-                e.setMaterials(files);
-
-
-                return e;
-            }
-        });
+                    List<StudyMaterial> files = template.query(get_files_sql,new Object[]{e.getmID()}, new RowMapper<StudyMaterial>(){
+                        public StudyMaterial mapRow(ResultSet rs, int row) throws SQLException, SQLException {
+                            StudyMaterial studyMaterial = new StudyMaterial();
+                            studyMaterial.setfID(rs.getInt("fID"));
+                            studyMaterial.setFileName(rs.getString("name"));
+                            System.out.println(studyMaterial.getFileName());
+                            return studyMaterial;
+                        }
+                    });
+                    e.setMaterials(files);
+                    return e;
+                }
+            });
+        }catch (Exception exception){
+            System.out.println(exception);
+            return null;
+        }
 
     }
 
     @Override
     public int deleteLecture(int mID) {
-
         String sql = "DELETE FROM studymaterial WHERE mID=?";
 
-        return template.update(sql,mID);
+        try{
+            return template.update(sql,mID);
+        }catch (Exception exception){
+            System.out.println(exception);
+            return 0;
+        }
 
     }
 
@@ -120,7 +123,12 @@ public class LecturerDaoImp implements LecturerDao{
     public int deleteAttachment(int fID) {
         String sql = "DELETE FROM lecturefiles WHERE fID=?";
 
-        return template.update(sql,fID);
+        try{
+            return template.update(sql,fID);
+        }catch (Exception exception){
+            System.out.println(exception);
+            return 0;
+        }
     }
 
 
