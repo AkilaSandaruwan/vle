@@ -1,0 +1,34 @@
+
+d
+java:S1192$"IDefine a constant instead of duplicating this literal "subjects" 4 times.(¤õ÷¤úÿÿÿÿ
+[
+java:S1192#"FDefine a constant instead of duplicating this literal "ADMIN" 3 times.(Êø×/
+`
+java:S1192 "JDefine a constant instead of duplicating this literal "userBean" 12 times.(µûèÉ
+r
+java:S1192g"\Define a constant instead of duplicating this literal "redirect:/lecturer/subject/" 5 times.(¼½Ç¹
+Y
+java:S11555">Use isEmpty() to check whether the collection is empty or not.(Öû®æúÿÿÿÿ
+S
+java:S2441#">Make "UserBean" serializable or don't store it in the session.(Êø×/
+h
+java:S2441$"MMake "List" and its parameters serializable or don't store it in the session.(¤õ÷¤úÿÿÿÿ
+Q	java:S125("<This block of commented-out lines of code should be removed.(…ÒÚ
+S
+java:S2441J">Make "UserBean" serializable or don't store it in the session.(Êø×/
+h
+java:S2441K"MMake "List" and its parameters serializable or don't store it in the session.(¤õ÷¤úÿÿÿÿ
+Y
+java:S2441\">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+S	java:S106^"9Replace this use of System.out or System.err by a logger.(ñ¿Ðÿÿÿÿÿ
+S	java:S106_"9Replace this use of System.out or System.err by a logger.(ýÊéùÿÿÿÿ
+S	java:S106`"9Replace this use of System.out or System.err by a logger.(éè½øýÿÿÿÿ
+N	java:S106a"9Replace this use of System.out or System.err by a logger.(¤©„Ã
+Y
+java:S2441s">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+Z
+java:S2441‡">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+T
+java:S2441š">Make "UserBean" serializable or don't store it in the session.(Êø×/
+i
+java:S2441›"MMake "List" and its parameters serializable or don't store it in the session.(¤õ÷¤úÿÿÿÿ

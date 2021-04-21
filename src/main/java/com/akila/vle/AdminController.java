@@ -47,7 +47,6 @@ public class AdminController {
     @Autowired
     LoginDao loginDao;
 
-
     //************************LECTURER MANAGE START******************************
 
     //Lecturer Registration
@@ -149,7 +148,6 @@ public class AdminController {
     }
 
     //************************LECTURER MANAGE END******************************
-
 
 
     //************************STUDENT MANAGE START******************************

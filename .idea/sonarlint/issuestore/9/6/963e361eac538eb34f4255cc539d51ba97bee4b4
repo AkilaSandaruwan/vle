@@ -1,0 +1,9 @@
+
+n
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡ž¸Îùÿÿÿÿ
+q
+java:S1128"VRemove this unused import 'net.sf.jasperreports.engine.util.FileBufferedOutputStream'.(¹ÅŸäûÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(Øûî™øÿÿÿÿ
+S	java:S106$"9Replace this use of System.out or System.err by a logger.(Ú§ÈÖúÿÿÿÿ
+V	java:S125+"<This block of commented-out lines of code should be removed.(Øûî™øÿÿÿÿ
+S	java:S1068"9Replace this use of System.out or System.err by a logger.(Ú§ÈÖúÿÿÿÿ

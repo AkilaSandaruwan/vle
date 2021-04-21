@@ -1,0 +1,14 @@
+
+S
+java:S1128
+"=Remove this unused import 'javax.validation.constraints.Min'.(ã¤½
+A
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü
+e
+java:S1128"ORemove this unused import 'org.springframework.beans.factory.annotation.Value'.(ìø›
+h	java:S116""NRename this field "NIC" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù¡µêüÿÿÿÿ
+f	java:S117f"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŸŒÊ
+T
+java:S1128"9Remove this unused import 'org.omg.CORBA.PRIVATE_MEMBER'.(˜›Æ³ùÿÿÿÿ
+X
+java:S1128"=Remove this unused import 'org.springframework.lang.NonNull'.(¯†—ÿÿÿÿÿ

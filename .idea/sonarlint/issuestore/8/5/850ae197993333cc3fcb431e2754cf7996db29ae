@@ -1,0 +1,125 @@
+
+k	java:S117|"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İşƒøÿÿÿÿ
+X
+java:S1854ã"<Remove this useless assignment to local variable "download".(…·óÌùÿÿÿÿ
+Y
+java:S2441w">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+`
+java:S11928"JDefine a constant instead of duplicating this literal "userBean" 32 times.(µûèÉ
+Z
+java:S2441Ë">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+i
+java:S1192|"NDefine a constant instead of duplicating this literal "UpdateFailed" 10 times.(İşƒøÿÿÿÿ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(«şäŞşÿÿÿÿ
+Z
+java:S2441¾">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+K
+java:S3740¤"/Provide the parametrized type for this generic.(ÀÙÕûıÿÿÿÿ
+d
+java:S1192²"HDefine a constant instead of duplicating this literal "student" 4 times.(¾É­–úÿÿÿÿ
+Z
+java:S2441é">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+K
+java:S3740‚"/Provide the parametrized type for this generic.(ÀÙÕûıÿÿÿÿ
+Z
+java:S2441Õ">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+K
+java:S3740‚"/Provide the parametrized type for this generic.(ÀÙÕûıÿÿÿÿ
+u
+java:S2293Ğ"YReplace the type specification in this constructor call with the diamond operator ("<>").(êŞ±›ÿÿÿÿÿ
+t
+java:S1192µ"]Define a constant instead of duplicating this literal "redirect:/admin/adminSubView" 3 times.(á œ
+K
+java:S3740ì"/Provide the parametrized type for this generic.(ÀÙÕûıÿÿÿÿ
+K
+java:S3740ì"/Provide the parametrized type for this generic.(ÀÙÕûıÿÿÿÿ
+N	java:S106‚"9Replace this use of System.out or System.err by a logger.(‚š‰1
+T	java:S106©"9Replace this use of System.out or System.err by a logger.(«şäŞşÿÿÿÿ
+u
+java:S2293¥"YReplace the type specification in this constructor call with the diamond operator ("<>").(êŞ±›ÿÿÿÿÿ
+u
+java:S2293ƒ"YReplace the type specification in this constructor call with the diamond operator ("<>").(êŞ±›ÿÿÿÿÿ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(¡µË§ıÿÿÿÿ
+Y
+java:S2441i">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+
+java:S1130û"qRemove the declaration of thrown exception 'java.text.ParseException', as it cannot be thrown from method's body.(ÈÅÛ­øÿÿÿÿ
+b
+java:S1192A"LDefine a constant instead of duplicating this literal "adminAddLec" 3 times.(’É˜Œ
+n
+java:S1192K"SDefine a constant instead of duplicating this literal "registrationFailed" 4 times.(çÏŠñøÿÿÿÿ
+R
+java:S1128
+"<Remove this unused import 'com.akila.vle.service.MyService'.(èÔ†ƒ
+K
+java:S3740¤"/Provide the parametrized type for this generic.(ÀÙÕûıÿÿÿÿ
+K
+java:S3740Ï"/Provide the parametrized type for this generic.(ÀÙÕûıÿÿÿÿ
+N	java:S106L"9Replace this use of System.out or System.err by a logger.(¤äøÑ
+
+java:S1130Ø"vRemove the declaration of thrown exception 'java.io.FileNotFoundException', as it cannot be thrown from method's body.(îõ°â
+Z
+java:S2441ü">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+f
+java:S1192@"KDefine a constant instead of duplicating this literal "Got errors" 3 times.(«şäŞşÿÿÿÿ
+x
+java:S1192F"]Define a constant instead of duplicating this literal "redirect:/admin/adminLecView" 3 times.(äÿÅ¨üÿÿÿÿ
+X
+java:S1854Ã"<Remove this useless assignment to local variable "download".(Ä¯è™üÿÿÿÿ
+g	java:S117¡"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•çÎ
+d
+java:S1192É"HDefine a constant instead of duplicating this literal "deleted" 4 times.(‰ó×Óúÿÿÿÿ
+c
+java:S1192ª"LDefine a constant instead of duplicating this literal "adminAddStu" 3 times.(Öô¤‰
+Z
+java:S2441¤">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+›
+java:S1130û"Remove the declaration of thrown exception 'java.security.NoSuchAlgorithmException', as it cannot be thrown from method's body.(ÈÅÛ­øÿÿÿÿ
+˜
+java:S1130¹"€Remove the declaration of thrown exception 'net.sf.jasperreports.engine.JRException', as it cannot be thrown from method's body.(ê¤ÈÓ
+I
+java:S1481ã"-Remove this unused "download" local variable.(…·óÌùÿÿÿÿ
+
+java:S1130¹"vRemove the declaration of thrown exception 'java.io.FileNotFoundException', as it cannot be thrown from method's body.(ê¤ÈÓ
+I
+java:S1481Ã"-Remove this unused "download" local variable.(Ä¯è™üÿÿÿÿ
+d
+java:S1226z"IIntroduce a new variable instead of reusing the parameter "lecturerBean".(ÄÆ°éøÿÿÿÿ
+Y
+java:S2441Z">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+h
+java:S1192ö"LDefine a constant instead of duplicating this literal "adminAddSub" 4 times.(«Û¿§ùÿÿÿÿ
+Y
+java:S2441;">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+u
+java:S2293í"YReplace the type specification in this constructor call with the diamond operator ("<>").(êŞ±›ÿÿÿÿÿ
+W	java:S125›"<This block of commented-out lines of code should be removed.(©Í“Åÿÿÿÿÿ
+S	java:S106@"9Replace this use of System.out or System.err by a logger.(«şäŞşÿÿÿÿ
+f
+java:S1192ª"JDefine a constant instead of duplicating this literal "lecturers" 8 times.(Ã¼½…şÿÿÿÿ
+l	java:S117è"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İşƒøÿÿÿÿ
+O	java:S106µ"9Replace this use of System.out or System.err by a logger.( øÏ¼
+Z
+java:S2441ã">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+K
+java:S3740Ï"/Provide the parametrized type for this generic.(ÀÙÕûıÿÿÿÿ
+N	java:S106‘"9Replace this use of System.out or System.err by a logger.(‚š‰1
+y
+java:S1192¯"]Define a constant instead of duplicating this literal "redirect:/admin/adminStuView" 3 times.(ù¾ ùÿÿÿÿ
+˜
+java:S1130Ø"€Remove the declaration of thrown exception 'net.sf.jasperreports.engine.JRException', as it cannot be thrown from method's body.(îõ°â
+[
+java:S1226æ"DIntroduce a new variable instead of reusing the parameter "student".(³¼íâ
+Z
+java:S2441ª">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+Z
+java:S2441•">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+l	java:S117Ú"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İşƒøÿÿÿÿ
+Z
+java:S2441ÿ">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+‡
+java:S1192"kDefine a constant instead of duplicating this literal "Update Request Failed... please try again." 3 times.(¡Ä±üÿÿÿÿ
+Z
+java:S2441İ">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ
+Z
+java:S2441Å">Make "UserBean" serializable or don't store it in the session.(ÿ¸Õñùÿÿÿÿ

@@ -1,0 +1,17 @@
+
+m
+java:S2095/"RUse try-with-resources or close this "BufferedOutputStream" in a "finally" clause.(òàÈùÿÿÿÿ
+E
+java:S1128"/Remove this unused import 'java.util.Calendar'.(ÿÛö´
+g
+java:S1128"LRemove this unused import 'org.springframework.web.multipart.MultipartFile'.(ôŸœÿÿÿÿÿ
+U
+java:S1118":Add a private constructor to hide the implicit public one.(¿á¼ôùÿÿÿÿ
+š
+java:S1130"Remove the declaration of thrown exception 'java.security.NoSuchAlgorithmException', as it cannot be thrown from method's body.(ÉÖ½ğÿÿÿÿÿ
+C
+java:S1172#".Remove this unused method parameter "request".(ƒ±6
+S
+java:S1854)"8Remove this useless assignment to local variable "path".(Òæß³şÿÿÿÿ
+D
+java:S1481)")Remove this unused "path" local variable.(Òæß³şÿÿÿÿ
